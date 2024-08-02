@@ -92,7 +92,7 @@
             <p class="fst-italic">
               I received the B.S. degree in automation from Guangdong University of Technology,
               China, in Jul.2024. I currently pursuing the M.S. degree in automatic control with the School of
-              Automation Engineering, University of Electronic Science and Technology of China,Chengdu. His research
+              Automation Engineering, University of Electronic Science and Technology of China,Chengdu. My research
               interests include signal processing and machine learning.
             </p>
             <div class="row">
@@ -297,23 +297,26 @@
             <img src="assets/img/Abstract.png" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-1 content">
-            <h4>Magnetic Tracking of Tongue Movements Based
-              on Ensemble of Regional Perceptrons</h4>
+            <h4>Regional Perceptrons Ensemble for Permanent Magnetic Localization</h4>
             <p class="font-italic">
-              <font size="4pt" color="black"> <strong>Background</strong>: The magnetic localization method has opened
-                up new applications in medical diagnosis and therapy, such as capsule endoscopy and tongue tracking.
-                However, achieving high localization accuracy and robustness presents challenges. A recent MLP-based
-                localization method eliminates the need for parameter calibration using the Euler equation and shows
-                promising localization results. Nevertheless, environmental noise and measurement errors significantly
-                impact the model, and employing a single MLP to model the entire space can lead to overfitting because
-                of the varying distribution characteristics of the spatial magnetic field. <strong>Method</strong>: To
-                address these problems, we propose a three-fold approach. Firstly, the gated multilayer perceptron
-                (gMLP) is employed to facilitate the model to adaptively suppress environmental interference. Secondly,
-                linear interpolation is employed to smooth out the noise and measurement errors in the training data
-                set. Thirdly, we designed Spatial-Angular Ensemble (SAE) to significantly improve the robustness of the
-                model to noise. <strong>Result</strong>: SAE, with linear interpolation, respectively, achieved an
-                average RMSE of 1.62 mm and 2.03°, 4.09° for tracer position, pitch angle and roll angle estimation,
-                which were 72.91 $\%$, 54.18$\%$, and 47.16$\%$ lower than those of the baseline method(MLP).
+              <font size="4pt" color="black"> <strong>Background</strong>: Permanent magnetic localization (PML) offers
+                a low-cost and convenient approach to wireless motion tracking. Recent neural network methods have
+                successfully improved the practicality of PML in real-world applications. However, the neural networks
+                are prone to overfitting because ambient noise often influences the magnetic measurements, which are
+                highly sensitive to the magnetic tracer's location. <strong>Method</strong>: To address this problem, we
+                propose a spatial-angular ensemble (SAE) of regional perceptrons for PML. Firstly, the SAE constructs
+                sub-region localization (SRL) modules to estimate the tracer's state in various spatial and angular
+                regions. Secondly, it equips the spatial-aware (SA) and angular-aware (AA) modules with the ability to
+                select the estimates from the SRL modules. Lastly, we design an attentional feature fusion (AFF) module
+                to dynamically integrate these localization results. The SRL, SA, and AA modules are implemented by
+                stacking the gated multi-layer perceptrons (gMLPs), which can adaptively suppress the noisy features.
+                Furthermore, we present a linear interpolation strategy to impose local smooth regularization during
+                neural network training, thereby enhancing the model's generalization performance.
+                <strong>Result</strong>: Based on the assessments of our experiment system, the proposed SAE with linear
+                interpolation significantly outperforms the current approaches in terms of magnetic location accuracy,
+                and its computing cost satisfies the requirements for real-time processing. Conclusion: This paper
+                provides a feasible neural network method to reduce the impact of noises and regional differences in
+                magnetic measurements, potentially improving the accuracy of PML.
             </p>
             <p>
               <font size="4pt" color="black"> <strong>Related Publications</strong>:
