@@ -29,6 +29,349 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- Custom Modern Flat Styles -->
+  <style>
+    :root {
+      --card-bg: rgba(255, 255, 255, .9);
+      --soft-border: rgba(0, 0, 0, .08);
+      --muted: rgba(0, 0, 0, .62);
+    }
+
+    /* Make section headers a bit more modern */
+    .section-title h2 {
+      letter-spacing: .2px;
+    }
+
+    /* 毛玻璃卡片：半透明 + 模糊 + 轻微高光边框 */
+    .soft-card {
+      background: rgba(255, 255, 255, .55);
+      border: 1px solid rgba(255, 255, 255, .45);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+    }
+
+    /* 轻微“玻璃高光”质感（可选，但很好看） */
+    .soft-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0));
+      opacity: .75;
+    }
+
+    /* 让 ::before 能正常叠加 */
+    .soft-card {
+      position: relative;
+    }
+
+
+    .soft-divider {
+      height: 1px;
+      background: rgba(0, 0, 0, .08);
+      margin: 16px 0;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem .75rem;
+      border: 1px solid var(--soft-border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .7);
+      font-size: .95rem;
+      margin: .25rem .4rem .25rem 0;
+      color: rgba(0, 0, 0, .78);
+    }
+
+    .chip i {
+      opacity: .75;
+    }
+
+    .about-hero-title {
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: .35rem;
+    }
+
+    .about-subtitle {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .list-clean {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list-clean li {
+      display: flex;
+      gap: .6rem;
+      padding: .45rem 0;
+      color: rgba(0, 0, 0, .82);
+    }
+
+    .list-clean li i {
+      margin-top: .2rem;
+      opacity: .75;
+    }
+
+    .abstract-text {
+      color: rgba(0, 0, 0, .75);
+    }
+
+    /* Competitions cards */
+    .comp-card .card-header {
+      background: transparent;
+      border-bottom: 1px solid var(--soft-border);
+      padding: 14px 16px;
+    }
+
+    .comp-card .card-body {
+      padding: 14px 16px 16px;
+    }
+
+    .comp-title {
+      font-weight: 700;
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .comp-meta {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: .2rem;
+    }
+
+    /* Improve spacing */
+    #about .container,
+    #services .container {
+      max-width: 1320px;
+    }
+
+    /* About 区块做一点淡背景，毛玻璃会更有感觉 */
+    #about {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(13, 110, 253, .10), transparent 60%),
+        radial-gradient(700px 450px at 85% 30%, rgba(32, 201, 151, .10), transparent 55%),
+        linear-gradient(180deg, rgba(0, 0, 0, .02), rgba(0, 0, 0, 0));
+    }
+
+    #about .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Competitions 区块也加淡背景，让毛玻璃更明显 */
+    #services {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #services::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 520px at 20% 15%, rgba(111, 66, 193, .10), transparent 60%),
+        radial-gradient(700px 450px at 85% 35%, rgba(13, 110, 253, .08), transparent 55%),
+        linear-gradient(180deg, rgba(0, 0, 0, .015), rgba(0, 0, 0, 0));
+    }
+
+    #services .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* （可选）比赛卡片 hover 更现代一点 */
+    .comp-card {
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .comp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .10);
+    }
+
+    /* Better badges spacing */
+    .badge-row .badge {
+      margin-right: .4rem;
+      margin-bottom: .4rem;
+    }
+
+    /* Resume 区块：淡背景 + 卡片化 */
+    #resume {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #resume::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 520px at 18% 10%, rgba(13, 110, 253, .08), transparent 60%),
+        radial-gradient(800px 520px at 88% 28%, rgba(32, 201, 151, .08), transparent 55%),
+        linear-gradient(180deg, rgba(0, 0, 0, .012), rgba(0, 0, 0, 0));
+    }
+
+    #resume .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 简历卡片 */
+    .resume-card {
+      padding: 18px 18px 10px;
+    }
+
+    /* 扁平时间线条目（更现代） */
+    .resume-flat-item {
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .45);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      margin-bottom: 12px;
+    }
+
+    .resume-flat-item h4 {
+      margin: 0 0 6px 0;
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .resume-flat-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem .75rem;
+      color: rgba(0, 0, 0, .62);
+      font-size: .95rem;
+      margin-bottom: 8px;
+    }
+
+    .resume-flat-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .resume-flat-item ul {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: rgba(0, 0, 0, .78);
+    }
+
+    /* 让 Resume 更“有颜色”但仍克制 */
+    .resume-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .3rem .6rem;
+      border-radius: 999px;
+      font-size: .92rem;
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .55);
+      color: rgba(0, 0, 0, .75);
+    }
+
+    /* 每条经历左侧淡色条（自动按类型上色） */
+    .resume-flat-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resume-flat-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      border-radius: 14px 0 0 14px;
+      background: rgba(13, 110, 253, .35);
+      /* 默认蓝 */
+    }
+
+    /* 不同卡片主题色（Education / Work / Intern） */
+    .resume-flat-item.edu::before {
+      background: rgba(13, 110, 253, .35);
+    }
+
+    .resume-flat-item.work::before {
+      background: rgba(32, 201, 151, .35);
+    }
+
+    .resume-flat-item.intern::before {
+      background: rgba(111, 66, 193, .35);
+    }
+
+    /* 标题关键字稍微上色 */
+    .resume-flat-item h4 {
+      color: rgba(0, 0, 0, .86);
+    }
+
+    .resume-flat-item h4 .k {
+      color: #0d6efd;
+      /* bootstrap primary */
+      font-weight: 800;
+    }
+
+    /* 列表换成带 icon 的“现代 bullet” */
+    .resume-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .resume-bullets li {
+      display: flex;
+      gap: .55rem;
+      padding: .35rem 0;
+      color: rgba(0, 0, 0, .78);
+    }
+
+    .resume-bullets li i {
+      margin-top: .22rem;
+      opacity: .85;
+    }
+
+    /* meta 里的 icon 稍微上色一点 */
+    .resume-flat-meta i {
+      color: rgba(13, 110, 253, .85);
+    }
+
+    /* 小的淡色块（用于奖项/亮点） */
+    .resume-highlight {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed rgba(0, 0, 0, .10);
+      background: rgba(13, 110, 253, .06);
+      color: rgba(0, 0, 0, .78);
+    }
+
+    /* Make old <font> styling irrelevant by ensuring body text looks consistent */
+    font {
+      all: unset;
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: iPortfolio
   * Updated: May 30 2023 with Bootstrap v5.3.0
@@ -74,7 +417,7 @@
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
+    <!-- ======= About Section (Modern Flat) ======= -->
     <section id="about" class="about">
       <div class="container">
 
@@ -83,56 +426,94 @@
           <p></p>
         </div>
 
-        <div class="row">
+        <div class="row g-4 align-items-stretch">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Linux Embedded Development &amp; Signal Processing.</h3>
-            <p class="fst-italic">
-              I received the B.S. degree in automation from Guangdong University of Technology,
-              China, in Jul.2024. I currently pursuing the M.S. degree in automatic control with the School of
-              Automation Engineering, University of Electronic Science and Technology of China,Chengdu. My research
-              interests include signal processing and machine learning.
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>GuangZhou, China</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
-                    <span>senhua.zh@std.uestc.edu.cn</span>
-                  </li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Institution:</strong> <span>University of Electronic
-                      Science and Technology of China </span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
+            <div class="soft-card h-100 p-3">
+              <img src="assets/img/profile-img.jpg" class="img-fluid rounded-4" alt="">
+              <div class="soft-divider"></div>
 
-                </ul>
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div>
+                  <h4 class="mb-0">Senhua Zhang</h4>
+                  <p class="about-subtitle mb-0">Automation · Embedded · Signal Processing</p>
+                </div>
+                <span class="badge text-bg-light border" style="border-color: rgba(0,0,0,.08) !important;">
+                  <i class="bi bi-mortarboard me-1"></i> M.S. Student
+                </span>
+              </div>
+
+              <div class="mt-3">
+                <a class="chip" href="mailto:senhua.zh@std.uestc.edu.cn">
+                  <i class="bi bi-envelope"></i> senhua.zh@std.uestc.edu.cn
+                </a>
+                <span class="chip">
+                  <i class="bi bi-geo-alt"></i> GuangZhou, China
+                </span>
+                <span class="chip">
+                  <i class="bi bi-building"></i> UESTC
+                </span>
               </div>
             </div>
           </div>
-        </div>
 
+          <div class="col-lg-8" data-aos="fade-left">
+            <div class="soft-card h-100 p-4">
+              <h3 class="about-hero-title">Linux Embedded Development &amp; Signal Processing.</h3>
+              <p class="about-subtitle">
+                B.S. (Automation) · GDUT (Jul. 2024) · M.S. (Automatic Control) · UESTC (Chengdu)
+              </p>
 
-        <div class="row">
-          <p>&nbsp;</p>
-          <!--<div class="col-lg-12 pt-4 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">-->
-          <div class="col-lg-12 pt-4 pt-lg-0 content">
-            <h3>Research Interests</h3>
-            <p>
-              <font size="4px" color="black">
-                My research interests include <strong>embedded linux development,signal processing and machine learning
-                </strong>.
+              <div class="soft-divider"></div>
 
-                <p class="font-italic">
-                  <font size="4" color="black"><strong> Feel free to reach out to me!</strong></font>
-                </p>
+              <p class="mb-3" style="color: rgba(0,0,0,.78);">
+                I received the B.S. degree in automation from Guangdong University of Technology,
+                China, in Jul.2024. I currently pursuing the M.S. degree in automatic control with the School of
+                Automation Engineering, University of Electronic Science and Technology of China, Chengdu.
+                My research interests include signal processing and machine learning.
+              </p>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="p-3 rounded-4 border"
+                    style="border-color: rgba(0,0,0,.08) !important; background: rgba(255,255,255,.55);">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <i class="bi bi-person-badge"></i>
+                      <strong>Quick Info</strong>
+                    </div>
+                    <ul class="list-clean">
+                      <li><i class="bi bi-geo-alt"></i> <span><strong>City:</strong> GuangZhou, China</span></li>
+                      <li><i class="bi bi-envelope"></i> <span><strong>Email:</strong> <a
+                            href="mailto:senhua.zh@std.uestc.edu.cn">senhua.zh@std.uestc.edu.cn</a></span></li>
+                      <li><i class="bi bi-building"></i> <span><strong>Institution:</strong> University of Electronic
+                          Science and Technology of China</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="p-3 rounded-4 border h-100"
+                    style="border-color: rgba(0,0,0,.08) !important; background: rgba(255,255,255,.55);">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <i class="bi bi-stars"></i>
+                      <strong>Research Interests</strong>
+                    </div>
+                    <div class="badge-row">
+                      <span class="chip"><i class="bi bi-terminal"></i> Embedded Linux</span>
+                      <span class="chip"><i class="bi bi-soundwave"></i> Signal Processing</span>
+                      <span class="chip"><i class="bi bi-cpu"></i> Machine Learning</span>
+                    </div>
+                    <div class="soft-divider"></div>
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-chat-dots" style="opacity:.75;"></i>
+                      <span style="color: rgba(0,0,0,.78);"><strong>Feel free to reach out to me!</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
-
 
       </div>
     </section><!-- End About Section -->
@@ -142,265 +523,447 @@
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
       <div class="container">
-
         <div class="section-title">
-          <h2>Skills</h2>
+          <h2>Technical Skills</h2>
+        </div>
 
-          <div class="col-lg-12 pt-4 pt-lg-0 content">
-            <p>
-              <font size="4pt" color="black"> <strong> Embedded Linux Development</strong>:
-            </p>
+        <div class="row">
+          <div class="col-lg-12">
+            <h4><i class="bi bi-terminal me-2"></i> Embedded Linux &amp; System Development</h4>
 
             <ul>
-              <li>Familiar with C language, C++ development, with good code writing habits;</li>
-              <li>Familiar with the development and debugging of ARM-based embedded software, familiar with the use of
-                compilation tools and debugging tools;</li>
-              <li>Familiar with Linux embedded operating system migration, tailoring, driver development and
-                application
-                development.</li>
+              <li>Proficient in <strong>C/C++</strong>, multi-threading, and concurrent programming with POSIX threads.
+              </li>
+              <li>Experienced in building embedded Linux systems: <strong>U-Boot, Kernel, Buildroot</strong>
+                customization
+                and porting.</li>
+              <li>Skilled in <strong>system-level optimization</strong> (e.g., CPU isolation, memory management,
+                low-latency
+                design).</li>
             </ul>
           </div>
-          <div class="col-lg-12 pt-4 pt-lg-0 content">
 
-            <p>
-              <font size="4pt" color="black"> <strong> Deep Learning & Signal Processing</strong>:
-            </p>
+          <div class="col-lg-12 mt-4">
+            <h4><i class="bx bx-chip me-2"></i> Hardware & Driver Development</h4>
             <ul>
-              <li>Understand the classical algorithms related to deep learning, and understand the common filter
-                processing algorithms (human signals);</li>
-              <li>Have a certain deep learning theoretical foundation and mathematical statistics foundation, with
-                independent algorithm design, implementation, analysis and optimization ability;</li>
-              <li>Master Python/Matlab language and development environment, have good code ability, familiar with
-                Pytorch
-                open source deep learning framework.</li>
+              <li>Familiar with <strong>ARM SoCs</strong>: Rockchip RK3588 (MPP), NVIDIA Jetson (TensorRT), Allwinner
+                A33/A64.</li>
+              <li>Developed and debugged drivers for <strong>UART, I2C, SPI, CAN, USB</strong> on Linux.</li>
+              <li>Implemented inter-processor communication between SoC, MCU (STM32), PMIC, and BMS via custom
+                protocols.
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-12 mt-4">
+            <h4><i class="bx bxs-brain me-2"></i> Deep Learning Deployment & Optimization</h4>
+            <ul>
+              <li>Deployed CNN/gMLP models on edge devices using <strong>TensorRT, ONNX, OpenCV</strong>.</li>
+              <li>Optimized inference latency (e.g., reduced point cloud processing time from 4.3ms to 0.03ms on Jetson
+                Nano).</li>
+              <li>Experience with <strong>SLAM (Fast-LIO2)</strong> and biomedical signal (ECG) model deployment.</li>
+            </ul>
+          </div>
+
+          <div class="col-lg-12 mt-4">
+            <h4><i class="bx bx-code-alt me-2"></i> Software Engineering & Toolchain</h4>
+            <ul>
+              <li>Build systems: <strong>CMake, Make</strong>; Version control: <strong>Git</strong>.</li>
+              <li>Cross-compilation toolchains, <strong>GDB</strong> debugging, and performance profiling.</li>
+              <li>Service management via <strong>Systemd</strong>; OTA design with SHA256, rsync, rollback support.</li>
             </ul>
           </div>
         </div>
-
-
-
       </div>
     </section><!-- End Skills Section -->
 
-    <!-- ======= Resume Section ======= -->
-    <!-- ======= Resume Section ======= -->
+    <!-- ======= Resume Section (Flat Cards + Accent Colors + Icons) ======= -->
     <section id="resume" class="resume">
       <div class="container">
 
         <div class="section-title">
           <h2>Biography</h2>
-
           <!--<p>Click <a href="Ting's CV.pdf" target="_blank" class="resume">here</a> to download my CV.</p> -->
         </div>
 
+        <div class="row g-4">
+          <!-- Education -->
+          <div class="col-lg-6" data-aos="fade-up">
+            <div class="soft-card resume-card h-100">
+              <h3 class="resume-title mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-mortarboard"></i>
+                <span>Education</span>
+              </h3>
 
+              <div class="resume-flat-item edu">
+                <h4><span class="k">B.S.</span>, Automation</h4>
+                <div class="resume-flat-meta">
+                  <span><i class="bi bi-calendar3"></i> Sep 2020 - Jul 2024</span>
+                  <span><i class="bi bi-geo-alt"></i> Guangzhou, China</span>
+                  <span class="resume-accent"><i class="bi bi-building"></i> GDUT</span>
+                </div>
+                <p class="mb-2"><em>Guangdong University of Technology (GDUT)</em></p>
 
-        <div class="row">
-          <div class="col-lg-6">
-            <!--<div class="col-lg-6" data-aos="fade-up">-->
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>B.S. ,Automation</h4>
-              <h5>Sep 2020 - Jul 2024</h5>
-              <p><em>Guangdong University of Technology (GDUT), Guangzhou, China</em></p>
-              <p><strong>Award</strong>:
+                <ul class="resume-bullets">
+                  <li><i class="bi bi-award"></i> <strong><em>The First Prize Scholarship</em></strong> (Top 3%)</li>
+                  <li><i class="bi bi-trophy"></i> Contemporary Undergraduate Mathematical Contest in Modeling 2021
+                    (Guangdong) — Second Prize</li>
+                  <li><i class="bi bi-lightning-charge"></i> National Undergraduate Electronics Design Contest 2022
+                    (Guangdong) — First Prize</li>
+                  <li><i class="bi bi-graph-up"></i> Mathematical Contest in Modeling 2022 — Honorable Mention</li>
+                  <li><i class="bi bi-pc-display"></i> China Undergraduate Computer Design Competition 2023 (Guangdong)
+                    — Second Prize</li>
+                  <li><i class="bi bi-people"></i> Scholarship for Outstanding Student Leaders</li>
+                </ul>
+              </div>
 
-                <ul>
-                  <li><strong><em> The First Prize Scholarship </em></strong> in
-                    GDUT (Top
-                    3%);</li>
-                  <li>Contemporary Undergraduate Mathematical Contest in Modeling 2021
-                    (Guangdong), Second Prize</li>
-                  <li>National Undergraduate Electronics Design Contest 2022
-                    (Guangdong) , <strong><em>First Prize</em></strong></li>
-                  <li>Mathematical Contest in Modeling 2022, Honorable Mention</li>
+              <div class="resume-flat-item edu">
+                <h4><span class="k">M.S.</span>, Automation</h4>
+                <div class="resume-flat-meta">
+                  <span><i class="bi bi-calendar3"></i> Sep 2024 - Jul 2027 (Expected)</span>
+                  <span><i class="bi bi-geo-alt"></i> Chengdu, China</span>
+                  <span class="resume-accent"><i class="bi bi-building"></i> UESTC</span>
+                </div>
+                <p class="mb-2"><em>University of Electronic Science and Technology of China (UESTC)</em></p>
 
-                  <li>China Undergraduate Computer Design Competition 2023
-                    (Guangdong) ,Second Prize</li>
-                  <li>Scholarship for Outstanding Student Leaders;</li>
+                <div class="resume-highlight" style="background: rgba(13,110,253,.06);">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-award"></i>
+                    <strong>Honors & Awards (UESTC)</strong>
+                  </div>
+
+                  <ul class="resume-bullets">
+                    <li><i class="bi bi-trophy"></i> "Huawei Cup" 21st China Post-Graduate Math Modeling Contest — Third
+                      Prize (2024)</li>
+                    <li><i class="bi bi-gear"></i> 2025 Huawei Embedded Software Competition — Top 12 in Southwest
+                      Region
+                    </li>
+                    <li><i class="bi bi-mortarboard"></i> UESTC Second-Class Scholarship (2024–2025)</li>
+                    <li><i class="bi bi-gift"></i> Yanbao Corporate Scholarship (2024–2025)</li>
+                  </ul>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Professional Experience -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="50">
+            <div class="soft-card resume-card h-100">
+              <h3 class="resume-title mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-briefcase"></i>
+                <span>Professional Experience</span>
+              </h3>
+
+              <div class="resume-flat-item work">
+                <h4>Electrocardiograph Development <span class="k">(Software Engineer)</span></h4>
+                <div class="resume-flat-meta">
+                  <span><i class="bi bi-calendar3"></i> Jul 2021 - May 2022</span>
+                  <span><i class="bi bi-building"></i> Institute of Intelligent Information Processing</span>
+                  <span><i class="bi bi-geo-alt"></i> Guangzhou, China</span>
+                  <span class="resume-accent"><i class="bi bi-code-slash"></i> Driver · Full-stack</span>
+                </div>
+
+                <ul class="resume-bullets">
+                  <li><i class="bi bi-check2-circle"></i> Complete driver development and deployment</li>
+                  <li><i class="bi bi-window"></i> Full-stack development</li>
+                  <li><i class="bi bi-cpu"></i> Neural network deployment</li>
                 </ul>
 
-              </p>
+                <div class="resume-highlight">
+                  <i class="bi bi-stars me-1"></i> Focus: reliability, integration, and deployment on embedded
+                  platforms.
+                </div>
+              </div>
 
-            </div>
-            <div class="resume-item">
-              <h4>M.S. ,Automation</h4>
-              <h5>Sep 2024 - Jul 2027(Expected)</h5>
-              <p><em>University of Electronic Science and Technology of China, Chengdu, China</em></p>
+              <div class="resume-flat-item work">
+                <h4>Non-contact Vital Signs Monitor <span class="k">(Software Engineer)</span></h4>
+                <div class="resume-flat-meta">
+                  <span><i class="bi bi-calendar3"></i> Feb 2022 - Jan 2023</span>
+                  <span><i class="bi bi-building"></i> Institute of Intelligent Information Processing</span>
+                  <span><i class="bi bi-geo-alt"></i> Guangzhou, China</span>
+                  <span class="resume-accent"><i class="bi bi-soundwave"></i> Radar · DSP</span>
+                </div>
 
-            </div>>
-
-          </div>
-
-
-          <div class="col-lg-6">
-            <!--<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">-->
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Electrocardiograph development(Software Engineer)</h4>
-              <h5>Jul 2021 - May 2022</h5>
-              <p><em>Institute of Intelligent Information Processing, Guangzhou, China</em></p>
-              <ul>
-                <li>Complete driver development and deployment</li>
-                <li>Full-stack devlopment</li>
-                <li>Neural network deployment</li>
-
-            </div>
-            <div class="resume-item">
-              <h4>Non-contact vital signs monitor(Software Engineer)</h4>
-              <h5>Feb 2022 - Jan 2023</h5>
-              <p><em>Institute of Intelligent Information Processing, Guangzhou, China</em></p>
-              <ul>
-                <li>Radar signal processing, Filter design, Digital signal processing.</li>
-                <li>Linux system porting, Kernel tailoring, File system customization. </li>
-                <li>Full-stack devlopment</li>
-              </ul>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6">
-            <h3 class="resume-title">Intern Experience</h3>
-            <div class="resume-item">
-              <h4>HITACHI(Software Engineer)</h4>
-              <h5>Jan 2024 - Jun 2024</h5>
-              <p><em>Industrial Technology Research Department, Guangzhou, China</em></p>
-              <ul>
-                <li>Camera interface development</li>
-                <li>Modobus, CAN, I2C interface development</li>
-                <li>C++ software architecture development</li>
+                <ul class="resume-bullets">
+                  <li><i class="bi bi-soundwave"></i> Radar signal processing, filter design, digital signal processing
+                  </li>
+                  <li><i class="bi bi-terminal"></i> Linux system porting, kernel tailoring, filesystem customization
+                  </li>
+                  <li><i class="bi bi-window"></i> Full-stack development</li>
+                </ul>
+              </div>
 
             </div>
           </div>
 
+          <!-- Intern Experience -->
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+            <div class="soft-card resume-card">
+              <h3 class="resume-title mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-rocket-takeoff"></i>
+                <span>Intern Experience</span>
+              </h3>
 
+              <div class="row g-3">
+                <div class="col-lg-6">
+                  <div class="resume-flat-item intern h-100">
+                    <h4>HITACHI <span class="k">(Software Engineer)</span></h4>
+                    <div class="resume-flat-meta">
+                      <span><i class="bi bi-calendar3"></i> Jan 2024 - Jun 2024</span>
+                      <span><i class="bi bi-geo-alt"></i> Guangzhou, China</span>
+                      <span class="resume-accent"><i class="bi bi-camera"></i> Interface Dev</span>
+                    </div>
+                    <p class="mb-2"><em>Industrial Technology Research Department</em></p>
 
+                    <ul class="resume-bullets">
+                      <li><i class="bi bi-camera"></i> Camera interface development</li>
+                      <li><i class="bi bi-hdd-network"></i> Modobus, CAN, I2C interface development</li>
+                      <li><i class="bi bi-diagram-3"></i> C++ software architecture development</li>
+                    </ul>
+                  </div>
+                </div>
 
+                <div class="col-lg-6">
+                  <div class="resume-flat-item intern h-100">
+                    <h4>ScanArk <span class="k">(Software Engineer Intern)</span></h4>
+                    <div class="resume-flat-meta">
+                      <span><i class="bi bi-calendar3"></i> Aug 2025 - Mar 2026</span>
+                      <span><i class="bi bi-geo-alt"></i> Chengdu, China</span>
+                      <span class="resume-accent"><i class="bi bi-terminal"></i> Embedded Linux</span>
+                    </div>
+                    <p class="mb-2"><em>Hardware Department</em></p>
 
+                    <ul class="resume-bullets">
+                      <li><i class="bi bi-terminal"></i> Embedded Linux development for handheld SLAM devices (RK3588)
+                      </li>
+                      <li><i class="bi bi-play-btn"></i> Implementing GStreamer hardware acceleration</li>
+                      <li><i class="bi bi-arrow-repeat"></i> Production-grade OTA solutions</li>
+                    </ul>
+
+                    <div class="resume-highlight" style="background: rgba(111,66,193,.06);">
+                      <i class="bi bi-lightbulb me-1"></i> Emphasis: performance, stability, and maintainable release
+                      pipelines.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
 
         </div>
 
       </div>
-    </section><!-- End Resume Section -->
+    </section>
+    <!-- End Resume Section -->
+
+
 
     <!-- ======= Research Section ======= -->
-    <section id="research" class="research">
+    <section id="research" class="research section-bg">
       <div class="container">
-
         <div class="section-title">
           <h2>Selected Research</h2>
         </div>
 
-
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/Abstract.png" class="img-fluid" alt="">
+        <div class="row mb-5 gy-4" data-aos="fade-up">
+          <div class="col-lg-4 text-center">
+            <img src="assets/img/fuelcell.png" class="img-fluid rounded shadow-sm mb-2" alt="Fuel Cell Research">
           </div>
-          <div class="col-lg-8 pt-4 pt-lg-1 content">
-            <h4>Regional Perceptrons Ensemble for Permanent Magnetic Localization</h4>
-            <p class="font-italic">
-              <font size="4pt" color="black"> <strong>Background</strong>: Permanent magnetic localization (PML) offers
-                a low-cost and convenient approach to wireless motion tracking. Recent neural network methods have
-                successfully improved the practicality of PML in real-world applications. However, the neural networks
-                are prone to overfitting because ambient noise often influences the magnetic measurements, which are
-                highly sensitive to the magnetic tracer's location. <strong>Method</strong>: To address this problem, we
-                propose a spatial-angular ensemble (SAE) of regional perceptrons for PML. Firstly, the SAE constructs
-                sub-region localization (SRL) modules to estimate the tracer's state in various spatial and angular
-                regions. Secondly, it equips the spatial-aware (SA) and angular-aware (AA) modules with the ability to
-                select the estimates from the SRL modules. Lastly, we design an attentional feature fusion (AFF) module
-                to dynamically integrate these localization results. The SRL, SA, and AA modules are implemented by
-                stacking the gated multi-layer perceptrons (gMLPs), which can adaptively suppress the noisy features.
-                Furthermore, we present a linear interpolation strategy to impose local smooth regularization during
-                neural network training, thereby enhancing the model's generalization performance.
-                <strong>Result</strong>: Based on the assessments of our experiment system, the proposed SAE with linear
-                interpolation significantly outperforms the current approaches in terms of magnetic location accuracy,
-                and its computing cost satisfies the requirements for real-time processing. Conclusion: This paper
-                provides a feasible neural network method to reduce the impact of noises and regional differences in
-                magnetic measurements, potentially improving the accuracy of PML.
-            </p>
-            <p>
-              <font size="4pt" color="black"> <strong>Related Publications</strong>:
-                <div class="btn-links">
-                  <a class="btn btn-outline-primary my-1 mr-1 btn-sm"
-                    href="https://ieeexplore.ieee.org/document/10599224" target="_blank">Accepted on Jul 2024</a>
-                </div>
-            </p>
+          <div class="col-lg-8 content">
+            <h4 class="text-primary">Reverse Current Evolution During Fuel Cell Start-Up: Integrating High-Resolution
+              Segmented Current Measurement with Quasi-2D Equivalent Circuit Modeling [cite: 15]</h4>
+            <p class="fw-bold mb-1">Senhua Zhang, Cong Yang. [cite: 15]</p>
+            <div class="mb-3">
+              <span class="badge bg-success">Q1 TOP Journal</span>
+              <span class="badge bg-primary">IF: 11.2</span>
+              <span class="badge bg-info">First Author</span>
+            </div>
+            <div class="abstract-text">
+              <strong>Abstract:</strong> During the start-up process of proton exchange membrane fuel cells (PEMFCs),
+              transient reverse currents may emerge inside the stack, leading to localized catalyst layer decay and
+              nonuniform performance degradation. Understanding the transient internal current evolution during start-up
+              is
+              crucial for improving fuel cell durability. In this study, a self-designed 33x12 segmented current
+              measurement
+              device with high spatial and temporal resolution is developed to investigate the transient reverse current
+              behaviors under different start-up conditions. The transient wave-like internal current distributions are
+              experimentally observed inside a commercial-sized PEMFC and visualized with 3D images during the start-up
+              process within several seconds. To further understand the reverse current formation mechanism, a quasi-2D
+              equivalent circuit model is established and optimized through parameter identification using the
+              Sequential
+              Parameter-wise Transfer Bayesian Optimization framework....
+            </div>
+            <div class="btn-links mt-3">
+              <a class="btn btn-outline-primary btn-sm rounded-pill"
+                href="https://www.sciencedirect.com/science/article/abs/pii/S0306261925015168" target="_blank">View on
+                ScienceDirect</a>
+            </div>
           </div>
         </div>
 
-
-
+        <div class="row mt-5 gy-4" data-aos="fade-up">
+          <div class="col-lg-4 text-center">
+            <img src="assets/img/Abstract.png" class="img-fluid rounded shadow-sm mb-2" alt="Magnetic Localization">
+          </div>
+          <div class="col-lg-8 content">
+            <h4 class="text-primary">Regional Perceptrons Ensemble for Permanent Magnetic Localization [cite: 20, 56]
+            </h4>
+            <p class="fw-bold mb-1">Jun.L, Fei.Z, Senhua Zhang, etc. [cite: 20]</p>
+            <div class="mb-3">
+              <span class="badge bg-secondary">SCI Q2</span>
+              <span class="badge bg-dark">Third Author</span>
+            </div>
+            <div class="abstract-text">
+              <strong>Abstract:</strong> Background: Permanent magnetic localization (PML) offers a low-cost and
+              convenient
+              approach to wireless motion tracking. Recent neural network methods have successfully improved the
+              practicality of PML in real-world applications. However, the neural networks are prone to overfitting
+              because
+              ambient noise often influences the magnetic measurements, which are highly sensitive to the magnetic
+              tracer's
+              location. Method: To address this problem, we propose a spatial-angular ensemble (SAE) of regional
+              perceptrons
+              for PML. Firstly, the SAE constructs sub-region localization (SRL) modules to estimate the tracer's state
+              in
+              various spatial and angular regions. Secondly, it equips the spatial-aware (SA) and angular-aware (AA)
+              modules
+              with the ability to select the estimates from the SRL modules. Lastly, we design an attentional feature
+              fusion
+              (AFF) module to dynamically integrate these localization results...
+            </div>
+            <div class="btn-links mt-3">
+              <a class="btn btn-outline-primary btn-sm rounded-pill"
+                href="https://ieeexplore.ieee.org/document/10599224" target="_blank">View Paper</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <!-- ======= Competition Section ======= -->
+    <!-- ======= Competition Section (Modern Flat Cards) ======= -->
     <section id="services" class="services">
       <div class="container">
 
         <div class="section-title">
           <h2>Competitions</h2>
         </div>
-        <p>
-          <font size="4pt" color="black"> <strong> Ordering and Transportation of Raw Materials for Manufacturing
-              Enterprises</strong>:
-        </p>
-        <ul>
-          <li><i class="icofont-rounded-right"></i>Contemporary Undergraduate Mathematical Contest in Modeling 2021
-          </li>
-          <li><i class="icofont-rounded-right"></i>Implemented comprehensive evaluation, Linear programming algorithm
-          </li>
-          <li><i class="icofont-rounded-right"></i>Got Guangdong 2nd Prize</li>
-        </ul>
 
-        <p>
-          <font size="4pt" color="black"> <strong> Composition analysis and identification of ancient glass products
-            </strong>:
-        </p>
-        <ul>
-          <li><i class="icofont-rounded-right"></i>Contemporary Undergraduate Mathematical Contest in Modeling
-            2022
-          </li>
-          <li><i class="icofont-rounded-right"></i>Implemented comprehensive evaluation, Programming to implement
-            decision tree algorithm, clustering algorithm, sensitivity analysis.
-          </li>
-          <li><i class="icofont-rounded-right"></i>Got Guangdong 2nd Prize</li>
-        </ul>
+        <div class="row g-4">
+          <div class="col-lg-6" data-aos="fade-up">
+            <div class="card soft-card comp-card h-100">
+              <div class="card-header">
+                <p class="comp-title">Ordering and Transportation of Raw Materials for Manufacturing Enterprises</p>
+                <p class="comp-meta mb-0">
+                  <i class="bi bi-trophy me-1"></i> Contemporary Undergraduate Mathematical Contest in Modeling 2021
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="badge-row">
+                  <span class="badge text-bg-light border"><i class="bi bi-diagram-3 me-1"></i> Linear
+                    Programming</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-clipboard-data me-1"></i> Comprehensive
+                    Evaluation</span>
+                  <span class="badge bg-primary"><i class="bi bi-award me-1"></i> Guangdong 2nd Prize</span>
+                </div>
+                <div class="soft-divider"></div>
+                <ul class="list-clean">
+                  <li><i class="bi bi-check2-circle"></i> Implemented comprehensive evaluation</li>
+                  <li><i class="bi bi-check2-circle"></i> Built linear programming optimization pipeline</li>
+                  <li><i class="bi bi-check2-circle"></i> Achieved Guangdong Second Prize</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <p>
-          <font size="4pt" color="black"> <strong> Maximizing forest benefits</strong>:
-        </p>
-        <ul>
-          <li><i class="icofont-rounded-right"></i>Mathematical Contest in Modeling 2022;
-          </li>
-          <li><i class="icofont-rounded-right"></i>Implemented principal component analysis, neural network prediction,
-            sensitivity
-            analysis.
-          </li>
-          <li><i class="icofont-rounded-right"></i>Got Honorable Prize</li>
-        </ul>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="50">
+            <div class="card soft-card comp-card h-100">
+              <div class="card-header">
+                <p class="comp-title">Composition Analysis and Identification of Ancient Glass Products</p>
+                <p class="comp-meta mb-0">
+                  <i class="bi bi-trophy me-1"></i> Contemporary Undergraduate Mathematical Contest in Modeling 2022
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="badge-row">
+                  <span class="badge text-bg-light border"><i class="bi bi-tree me-1"></i> Decision Tree</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-bounding-box-circles me-1"></i>
+                    Clustering</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-activity me-1"></i> Sensitivity
+                    Analysis</span>
+                  <span class="badge bg-primary"><i class="bi bi-award me-1"></i> Guangdong 2nd Prize</span>
+                </div>
+                <div class="soft-divider"></div>
+                <ul class="list-clean">
+                  <li><i class="bi bi-check2-circle"></i> Implemented comprehensive evaluation</li>
+                  <li><i class="bi bi-check2-circle"></i> Programmed decision tree, clustering, and sensitivity analysis
+                  </li>
+                  <li><i class="bi bi-check2-circle"></i> Achieved Guangdong Second Prize</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <p>
-          <font size="4pt" color="black"> <strong> National Undergraduate Electronics Design Contest 2022</strong>:
-        </p>
-        <ul>
-          <li><i class="icofont-rounded-right"></i>Participate in hardware circuit debugging, Responsible for Linux
-            system construction and file system
-            tailoring.;
-          </li>
-          <li><i class="icofont-rounded-right"></i>Responsible for the development of data communication protocols,
-            real-time signal processing,
-            human-computer interface design
-          </li>
-          <li><i class="icofont-rounded-right"></i>Got <strong>First Prize</strong>(Guangdong)</li>
-        </ul>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card soft-card comp-card h-100">
+              <div class="card-header">
+                <p class="comp-title">Maximizing Forest Benefits</p>
+                <p class="comp-meta mb-0">
+                  <i class="bi bi-trophy me-1"></i> Mathematical Contest in Modeling 2022
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="badge-row">
+                  <span class="badge text-bg-light border"><i class="bi bi-bar-chart me-1"></i> PCA</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-cpu me-1"></i> Neural Network
+                    Prediction</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-activity me-1"></i> Sensitivity
+                    Analysis</span>
+                  <span class="badge bg-success"><i class="bi bi-award me-1"></i> Honorable Mention</span>
+                </div>
+                <div class="soft-divider"></div>
+                <ul class="list-clean">
+                  <li><i class="bi bi-check2-circle"></i> Implemented principal component analysis</li>
+                  <li><i class="bi bi-check2-circle"></i> Built neural network prediction workflow</li>
+                  <li><i class="bi bi-check2-circle"></i> Conducted sensitivity analysis and reporting</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="card soft-card comp-card h-100">
+              <div class="card-header">
+                <p class="comp-title">National Undergraduate Electronics Design Contest 2022</p>
+                <p class="comp-meta mb-0">
+                  <i class="bi bi-trophy me-1"></i> Embedded System &amp; Signal Processing
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="badge-row">
+                  <span class="badge text-bg-light border"><i class="bi bi-router me-1"></i> Protocol Design</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-hdd-network me-1"></i> Linux System
+                    Build</span>
+                  <span class="badge text-bg-light border"><i class="bi bi-soundwave me-1"></i> Real-time
+                    Processing</span>
+                  <span class="badge bg-warning text-dark"><i class="bi bi-award me-1"></i> First Prize
+                    (Guangdong)</span>
+                </div>
+                <div class="soft-divider"></div>
+                <ul class="list-clean">
+                  <li><i class="bi bi-check2-circle"></i> Participated in hardware circuit debugging</li>
+                  <li><i class="bi bi-check2-circle"></i> Built Linux system and customized filesystem tailoring</li>
+                  <li><i class="bi bi-check2-circle"></i> Developed data communication protocols and HCI design</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section><!-- End Services Section -->
-
-
-
 
   </main><!-- End #main -->
 
@@ -411,10 +974,6 @@
         &copy; Senhua <strong><span>(2023)</span></strong>
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
